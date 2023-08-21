@@ -1,24 +1,55 @@
-# README
+## Users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| id                 | integer| null: false, unique: true |
+| nicname            | string | null: false |
+| email              | string | null: false |
+| password           | text   | null: false |
+| username_kanji     | text   | null: false |
+| username_kana      | text   | null: false |
+| birthdate          | text   | null: false |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :prototypes
+- has_many :comments
 
-* System dependencies
+## Items テーブル
 
-* Configuration
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| id                 | integer| null: false, unique: true |
+| image_url          | string | null: false, unique: true |
+| name               | string | null: false |
+| description        | text   | null: false |
+| category           | string | null: false |
+| condition          | string | null: false |
+| shipping_fee       | string | null: false |
+| shipping_region    | string | null: false |
+| shipping_days      | string | null: false |
+| price              | integer| null: false |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to :user
 
-* How to run the test suite
+## customers テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| id                 | integer    | null: false, unique: true |
+| card_number        | string     | null: false |
+| expiration_date    | text       | null: false |
+| security_code      | text       | null: false |
+| postal_code        | text       | null: false |
+| prefecture         | text       | null: false |
+| city               | text       | null: false |
+| street_address     | text       | null: false |
+| building_name      | text       | null: false |
+| phone_number       | integer    | null: false |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+- belongs_to :item
