@@ -12,8 +12,10 @@
 
 ### Association
 
-- has_many :prototypes
-- has_many :comments
+- has_many :items
+- has_many :addresses
+- has_many :orders
+
 
 ## Items テーブル
 
@@ -33,8 +35,9 @@
 ### Association
 
 - belongs_to :user
+- belongs_to :address
 
-## customers テーブル
+## Addresses テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
@@ -52,4 +55,14 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :item
+- has_many :items
+
+## Orders テーブル
+
+| Column          | Type    | Options                   |
+| --------------- | ------- | ------------------------- |
+| id              | integer | null: false, unique: true |
+| user_id         | integer | null: false               |
+| item_id         | integer | null: false               |
+
+- belongs_to :user
