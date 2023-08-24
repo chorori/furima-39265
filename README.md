@@ -4,7 +4,7 @@
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
 | email              | string | null: false |
-| password           | string | null: false |
+| encrypted_password | string | null: false |
 | last_name          | string | null: false |
 | first_name         | string | null: false |
 | last_name_kana     | string | null: false |
@@ -21,7 +21,6 @@
 
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 | integer | null: false, unique: true |
 | name               | string  | null: false |
 | description        | text    | null: false |
 | category_id        | integer | null: false |
@@ -30,11 +29,12 @@
 | shipping_region_id | integer | null: false |
 | shipping_day_id    | integer | null: false |
 | price              | integer | null: false |
+| user               | references | null: false, foreign_key: true|
 
 ### Association
 
 - belongs_to :user
-- belongs_to :orders
+- has_one :orders
 
 
 ## Addresses テーブル
@@ -45,15 +45,14 @@
 | prefecture_id      | integer    | null: false |
 | city               | string     | null: false |
 | street_address     | string     | null: false |
-| building_name      | string     | null: false |
+| building_name      | string     |             |
 | phone_number       | string     | null: false |
-| order_id           | integer    | null: false, foreign_key: true|
+| order              | references | null: false, foreign_key: true|
 
 
 ### Association
 
-- belongs_to :user
-- has_many :items
+- belongs_to :order
 
 
 ## Orders テーブル
