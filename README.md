@@ -3,7 +3,7 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string | null: false |
+| email              | string | unique: true|
 | encrypted_password | string | null: false |
 | last_name          | string | null: false |
 | first_name         | string | null: false |
@@ -14,7 +14,7 @@
 ### Association
 
 - has_many :items
-- has_many :orders
+- has_many :order
 
 
 ## Items テーブル
@@ -42,7 +42,7 @@
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
 | postal_code        | string     | null: false |
-| prefecture_id      | integer    | null: false |
+| shipping_region_id | integer    | null: false |
 | city               | string     | null: false |
 | street_address     | string     | null: false |
 | building_name      | string     |             |
@@ -66,3 +66,4 @@
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :address
