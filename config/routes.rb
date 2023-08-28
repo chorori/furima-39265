@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :addresses
   devise_for :items
   devise_for :users
   get 'items/index'
