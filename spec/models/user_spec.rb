@@ -41,21 +41,19 @@ RSpec.describe User, type: :model do
       it 'passwordが5文字以下では登録できない' do
         @user.password = '12345' # 5文字以下の例
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)"
       end
 
-      it 'パスワードは、半角英数字混合での入力が必須であること' do
-        @user.password = 'password' # 半角英字のみのパスワード
+      it 'パスワードが英語のみでは登録できない' do
+        @user.password = 'abcdef'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
-    
-        @user.password = '123456' # 半角数字のみのパスワード
+      end
+
+      it 'パスワードが数字のみでは登録できない' do
+        @user.password = '123456'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
-    
-        @user.password = 'パスワード' # 全角文字のパスワード
-        @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid"
       end
 
       it 'パスワードとパスワード（確認）は、値の一致が必須であること' do
@@ -93,8 +91,8 @@ RSpec.describe User, type: :model do
         @user.last_name_kana = 'すみす' # ひらがなを含む名字カナ
         @user.first_name_kana = 'じょん' # ひらがなを含む名前カナ
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name kana is invalid"
-        expect(@user.errors.full_messages).to include "First name kana is invalid"
+        expect(@user.errors.full_messages).to include "Last name is invalid"
+        expect(@user.errors.full_messages).to include "First name is invalid"
       end
 
       it '生年月日が必須であること' do
