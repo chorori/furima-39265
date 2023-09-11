@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
 
     context '新規登録できるとき' do
       it 'nickname、email、password、password_confirmation、last_name、first_name、last_name_kana、first_name_kana が存在すれば登録できる' do
+        expect(@user).to be_valid
       end
     end
 
@@ -91,8 +92,8 @@ RSpec.describe User, type: :model do
         @user.last_name_kana = 'すみす' # ひらがなを含む名字カナ
         @user.first_name_kana = 'じょん' # ひらがなを含む名前カナ
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name is invalid"
-        expect(@user.errors.full_messages).to include "First name is invalid"
+        expect(@user.errors.full_messages).to include "Last name kana is invalid"
+        expect(@user.errors.full_messages).to include "First name kana is invalid"
       end
 
       it '生年月日が必須であること' do
