@@ -50,6 +50,18 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       
+      it 'imageが空では保存できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
+      it 'category_idが初期値"---"では保存できない' do
+        @item.category_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be ---")
+      end
+
     end
 
   end
