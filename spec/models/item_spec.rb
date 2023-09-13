@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    @item = FactoryBot.build(:item, category_id: 2, condition_id: 2)
   end
 
   describe '商品登録' do
@@ -57,9 +57,33 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが初期値"---"では保存できない' do
-        @item.category_id = 0
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be ---")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
+      it 'condition_idが空では登録できない' do
+        @item.condition_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+
+      it 'shipping_fee_idが空では登録できない' do
+        @item.shipping_fee_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
+      end
+
+      it 'condition_idが初期値"---"では保存できない' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+
+      it 'priceが半角数値でなければ登録できない' do
+        @item.price = '３００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
     end
