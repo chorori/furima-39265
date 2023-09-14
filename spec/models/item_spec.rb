@@ -57,7 +57,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが初期値"---"では保存できない' do
-        @item.category_id = 1
+        @item.category_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
