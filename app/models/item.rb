@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   validates :shipping_fee_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_region_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   has_one_attached :image
   validates :image, presence: true
 
