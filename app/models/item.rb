@@ -16,4 +16,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :shipping_region
   belongs_to :shipping_day
+
+  belongs_to :user
 end
