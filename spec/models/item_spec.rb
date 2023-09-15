@@ -92,6 +92,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("User must exist")
       end
 
+      it 'shipping_fee_idが初期値"---"では保存できない' do
+        @item.shipping_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
+      end
+      
+      it 'shipping_region_idが初期値"---"では保存できない' do
+        @item.shipping_region_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping region can't be blank")
+      end
+      
+      it 'shipping_day_idが初期値"---"では保存できない' do
+        @item.shipping_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      end
+
     end
 
   end
