@@ -132,13 +132,13 @@
           <li class='list'>
             <%= link_to "#" do %>
             <div class='item-img-content'>
-              <%= image_tag item.image.url, class: "item-img" %>
+              <%= image_tag item.image, class: "item-img" %>
 
               <%# 購入機能時実装予定 %>
               <%# if item.sold? %>
-              <div class='sold-out'>
+              <%# <div class='sold-out'>
                 <span>Sold Out!!</span>
-              </div>
+              </div> %>
               <%# end %>
 
             </div>
