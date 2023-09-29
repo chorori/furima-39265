@@ -18,4 +18,5 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
   belongs_to :user
+  has_many :orders
 end
