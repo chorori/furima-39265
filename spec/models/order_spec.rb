@@ -16,10 +16,17 @@ RSpec.describe Order, type: :model do
 
   context '内容に問題がある場合' do
 
-    it "tokenが空では登録できないこと" do
-      @order.token = nil
+    it 'user_idが空だと保存できない' do
+      @order.user_id = nil
       @order.valid?
-      expect(@order.errors.full_messages).to include("Token can't be blank")
+      expect(@order.errors.full_messages).to include("User must exist")
     end
+
+    it 'item_idが空だと保存できない' do
+      @order.item_id = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Item must exist")
+    end
+
   end
 end
