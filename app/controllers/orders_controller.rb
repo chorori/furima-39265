@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
       redirect_to root_path, notice: 'Order was successfully created.'
     else
       render :index
-    end
+    end    
   end
   
   private
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   end
   
   def order_address_form_params
-    params.require(:order_address_form).permit(:postal_code, :shipping_region_id, :city, :street_address, :building_name, :phone_number, :token).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order_address_form).permit(:postal_code, :shipping_region_id, :city, :street_address, :building_name, :phone_number, :token).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
 
