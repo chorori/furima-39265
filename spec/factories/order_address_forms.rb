@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_address_form do
     postal_code { '123-4567' }
-    shipping_region_id { 1 }
+    shipping_region_id { 3 }
     city { '東京都' }
     street_address { '1-1' }
     building_name { '東京ハイツ' }
