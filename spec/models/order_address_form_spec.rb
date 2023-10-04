@@ -13,6 +13,11 @@ RSpec.describe OrderAddressForm, type: :model do
       expect(@order_address_form).to be_valid
     end
 
+    it 'building_nameが空でも保存できる' do
+      @order_address_form.building_name = ''
+      expect(@order_address_form).to be_valid
+    end
+
   end
 
   context '内容に問題がある場合' do
